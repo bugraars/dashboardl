@@ -6,8 +6,13 @@ import { useData } from "@/context/data-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAward } from "@fortawesome/free-solid-svg-icons";
 import "@/styles/globals.css";
+
 export default function CoursesPage() {
   const data = useData();
+
+  if (!data || !data.data) {
+    return <div>Loading...</div>; // Handle loading state or show an error message
+  }
 
   const inProgressCourses = data.data.in_progress_courses || [];
   const upcomingCourses = data.data.upcoming_courses || [];
